@@ -12,12 +12,23 @@ pipeline {
                         git 'https://github.com/anugu99/pranay.git'
                                 }
                         }
-               
+                stage ('build') {
+                        steps {
+                                echo 'build'
+                                sh 'mvn clean compile'
+                                }
+                        }
                 stage ('test') {
                         steps {
                                 echo 'test'
                                 sh 'mvn test'
                                 }
                         }
-                        }
-                        }
+                stage ('package'){
+                    steps{
+                        echo 'package'
+                        sh 'mvn package'
+                    }
+                }
+        }
+}
